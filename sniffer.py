@@ -1,6 +1,7 @@
 ## Import Scapy module
 from scapy.all import *
 import pydot
+import matplotlib.pyplot as plt
 
 ## Create a Packet Count var
 packetCount = 0
@@ -47,10 +48,48 @@ def action_only_type(my_packet):
         with open('dist.txt', 'w') as file_:
             file_.write(string_dist_dictionary)
 
-    if packetCount == 5000:
+    # Arbitrary number to plot the network
+    if packetCount == 500:
         plot_network()
+        calculate_entropy()
+        plot_histogram()
 
     return return_value
+
+
+def calculate_entropy():
+    entropy = 0
+    for packet_type in type_dictionary:
+        probability = float(type_dictionary.get(packet_type)) / packetCount
+        log_of_prob = math.log(probability, 2)
+        entropy += probability * log_of_prob
+    entropy = -entropy
+    print('Entropy: ' + str(entropy))
+    return entropy
+
+
+def compute_histogram():
+    hist = collections.OrderedDict()
+    for packet_type in type_dictionary:
+        hist[packet_type] = type_dictionary.get(packet_type)
+    return hist
+
+
+def plot_histogram():
+    hist = compute_histogram()
+    basename = 'Basename'
+    source = 'Source'
+    x, y = [20 * i for i in range(len(hist))], hist.values()
+    labels = hist.keys()
+    f = plt.figure('hist_{source}'.format(source=source), [16, 9])
+    f.subplots_adjust(bottom=0.2)
+    plt.xlim([-2, x[-1] + 2])
+    plt.bar(x, y, align='center')
+    plt.xticks(x, labels, size='small', rotation='vertical', fontsize=18)
+    plt.title('Cant. Tipos: {source}'.format(source=source), fontsize=18)
+    plt.xlabel("IP", fontsize=15)
+    plt.ylabel("Cantidad de Tipos", fontsize=18)
+    f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
 
 
 def plot_network():
