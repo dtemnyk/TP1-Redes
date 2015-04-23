@@ -1,0 +1,95 @@
+\documentclass[10pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[paper=a4paper, left=1.5cm, right=1.5cm, bottom=1.5cm, top=3.5cm]{geometry}
+\usepackage[spanish]{babel}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
+\usepackage{lastpage}
+\usepackage[colorlinks=true, linkcolor=blue]{hyperref}
+\usepackage{calc}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{amsfonts}
+\usepackage{float}
+\setcounter{tocdepth}{5}
+\usepackage{caption}
+\usepackage{subcaption}
+\sloppy
+
+\parskip=5pt % 10pt es el tamaño de fuente
+
+% Pongo en 0 la distancia extra entre ítemes.
+\let\olditemize\itemize
+\def\itemize{\olditemize\itemsep=0pt}
+
+\usepackage{caratula}
+
+% Acomodo fancyhdr.
+\pagestyle{fancy}
+\thispagestyle{fancy}
+\addtolength{\headheight}{1pt}
+\lhead{S. Aboy Solanes, E. Almansi, F. Canay, F. Decroix}
+\rhead{$2^{\mathrm{do}}$ cuatrimestre de 2014}
+\cfoot{\thepage /\pageref{LastPage}}
+\rfoot{Trabajo Práctico 1 - Wiretapping}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+
+\titulo{Trabajo Práctico 1 - Wiretapping}
+\fecha{Martes 23 de Septiembre}
+\materia{Teoría de las Comunicaciones}
+\integrante{Santiago Aboy Solanes}{175/12}{santiaboy2@hotmail.com}
+\integrante{Emilio Almansi}{674/12}{ealmansi@gmail.com}
+\integrante{Federico Canay}{250/12}{fcanay@hotmail.com}
+\integrante{Facundo Decroix}{842/11}{fndecroix92@hotmail.com}
+
+%Pagina de titulo e indice
+\thispagestyle{empty}
+
+\maketitle
+
+%\thispagestyle{empty}
+%\mbox{}
+%\newpage
+\thispagestyle{empty}
+\tableofcontents
+
+\newpage
+
+\section{Introducción}
+\label{sec:introduccion}
+\input{introduccion.tex}
+
+\section{Desarrollo}
+\label{sec:desarrollo}
+\input{desarrollo.tex}
+
+\section{Experimentación}
+\input{experimentacion.tex}
+
+\section{Resultados}
+
+  \subsection{Red Hogareña}
+  \input{red-hogarena.tex}
+
+  \subsection{Red Alto Palermo}
+  \input{red-alto-palermo.tex}
+
+  \subsection{Red Honeywell}
+  \input{red-honeywell.tex}
+
+  \subsection{Red Laboratorios DC}
+  \input{red-entrepiso-dc.tex}
+  
+\section{Discusión General}
+\input{discusion-general.tex}
+
+\newpage
+
+\section{Conclusiones}
+\input{conclusiones.tex}
+
+\end{document}	

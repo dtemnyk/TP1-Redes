@@ -1,0 +1,39 @@
+red-alto-palermo: S_src
+  - entropy:  4.96088403083
+  - max possible entropy:  6.72792045456
+  - ratio:  0.737357711693
+
+red-alto-palermo: S_dst
+  - entropy:  4.65701881033
+  - max possible entropy:  6.53915881111
+  - ratio:  0.712173988253
+
+red-entrepiso-dc: S_src
+  - entropy:  2.03731420117
+  - max possible entropy:  5.0
+  - ratio:  0.407462840233
+
+red-entrepiso-dc: S_dst
+  - entropy:  6.95922916897
+  - max possible entropy:  7.58496250072
+  - ratio:  0.917503437665
+
+red-hogarena: S_src
+  - entropy:  1.2319817814
+  - max possible entropy:  2.0
+  - ratio:  0.615990890701
+
+red-hogarena: S_dst
+  - entropy:  1.26744380381
+  - max possible entropy:  1.58496250072
+  - ratio:  0.799668006802
+
+red-honeywell: S_src
+  - entropy:  2.05322002017
+  - max possible entropy:  3.32192809489
+  - ratio:  0.618080813769
+
+red-honeywell: S_dst
+  - entropy:  3.17600221734
+  - max possible entropy:  4.39231742278
+  - ratio:  0.723081214683

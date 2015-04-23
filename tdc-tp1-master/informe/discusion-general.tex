@@ -1,0 +1,65 @@
+En esta sección vamos a discutir acerca de las distintas entropías de las distintas fuentes de las redes observadas.
+
+\begin{center}
+\textbf{Red Hogareña}
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+Fuente&Entropía H(S)&Entropía Máxima&Proporción\\
+\hline
+$S_{dst}$&1.27&1.58&0.80\\
+$S_{src}$&1.23&2.0&0.62\\ 
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\textbf{Red Alto Palermo}
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+Fuente&Entropía H(S)&Entropía Máxima&Proporción\\
+\hline
+$S_{dst}$&4.66&6.54&0.71\\
+$S_{src}$&4.96&6.73&0.74\\ 
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\textbf{Red Honeywell}
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+Fuente&Entropía H(S)&Entropía Máxima&Proporción\\
+\hline
+$S_{dst}$&3.17&4.39&0.72\\
+$S_{src}$&2.05&3.32&0.62\\ 
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\textbf{Red Entrepiso-DC}
+ 
+  \begin{tabular}{|c|c|c|c|}
+  \hline
+  Fuente&Entropía H(S)&Entropía Máxima&Proporción\\
+  \hline
+  $S_{dst}$&6.96&7.58&0.92\\
+  $S_{src}$&2.04&5.00&0.41\\ 
+  \hline
+  \end{tabular}
+\end{center}
+
+Como podemos observar, los valores de la proporción entre la entropía y la entropía máxima de las fuentes rondan los 0.60 y 0.80 salvo en la Red Entrepiso. En dicha red, los valores son mas dispares. 
+
+En la Red Hogareña, podemos ver que en la fuente $S_{src}$ la proporción es más baja lo cual implica que hay menos incertidumbre en dicha fuente. Esto significa que la cantidad de paquetes ARP \emph{who-has} enviados no esta uniformemente distribuida entre las distintas IPs. Por otro lado, en $S_{dst}$ la proporción es más alta lo cual implica que hay más incertidumbre en esa fuente. Esto quiere decir que los paquetes recibidos tienen una distribución más uniforme que en la fuente $S_{src}$.
+
+Esto se repite de manera análoga en la Red Honeywell. Sin embargo, cabe aclarar que la entropía máxima en la Red Honeywell es mayor a la entropía máxima de la Red Hogareña en ambas fuentes. Esto significa que hay más IPs involucradas en los paquetes de las fuentes.
+
+En la Red Alto Palermo, ambas las proporciones de ambas fuentes son similares. Esto significa que su distribución tiene uniformidad parecida.
+
+Finalmente, en la Red Entrepiso la proporciones son las más distantes. La distribución de la fuente $S_{dst}$ es la más uniforme de todas, lo cual es reflejado en su alta proporción (0.92). Por otro lado, la proporción de $S_{src}$ es la más baja de todas. Esto significa que esta fuente es la que tiene menos incertidumbre de todas.
+
+La entropía máxima de las distintas fuentes $S_{dst}$ tiene un máximo de 7.58 en su homónima de la Red Entrepiso. Por otro lado, la entropía máxima de las fuentes $S_{src}$ tiene su máximo en la Red Alto Palermo, con un valor de 6.73.

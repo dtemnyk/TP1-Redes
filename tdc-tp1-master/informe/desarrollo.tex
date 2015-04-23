@@ -1,0 +1,29 @@
+\subsection{Modelos de fuente de información}
+\label{subsec:modelos-fuente-informacion}
+
+Para analizar las redes locales estudiadas, utilizamos dos modelos de fuente de información:
+\vspace*{-2mm}
+
+\begin{itemize}
+  \item $S_{dst}$ = \{$s_1$ $\cdots$ $s_n$\}, siendo $s_i$ una IP que aparece como dirección destino en los paquetes ARP \emph{who-has}.
+  \item $S_{src}$ = \{$s_1$ $\cdots$ $s_n$\}, siendo $s_i$ una IP que aparece como dirección origen en los paquetes ARP \emph{who-has}.
+\end{itemize}
+
+Esto permitió, dado el flujo de paquetes de una red local, definir la \textbf{información} del evento $E_i$: ``aparición del símbolo $s_i$'' como:
+
+$$I (E_i) = log\left(\frac{1}{P(E_i)}\right)$$
+
+unidades de información, donde $P(E_i)$ es la probabilidad de que suceda $E_i$. Al usar $log_2$, la unidad obtenida se denomina bits.
+
+Utilizando la definición previa se puede definir la \textbf{entropía} de una fuente ($S_{dst}$ o $S_{src}$ por ejemplo), representada por $H(S)$, como el valor medio ponderado de la cantidad de información de la aparición de cada símbolo $s_i$ que la compone.
+
+$$H(S) = \sum_{i=1}^{n} P(E_i)\,I(E_i) = \sum_{i=1}^{n} P(E_i)\,log\left(\frac{1}{P(E_i)}\right)$$
+
+Adicionalmente, en base a estas nociones podemos establecer un criterio para considerar que un nodo de la red se considera un \textbf{nodo distinguido} para una fuente dada: un nodo es distinguido cuando la información asociada a la aparición de su IP es menor que la entropía de dicha fuente.
+
+\subsection{Grafo de relación entre los nodos}
+\label{subsec:grafo-relacion-nodos}
+
+Como los paquetes ARP tienen una dirección IP fuente y una dirección IP destino, surge naturalmente la siguiente relación entre IP's: IP $x$ a IP $y$ \emph{sii} se observó algún paquete ARP con dirección fuente IP $x$ y dirección destino IP $y$.
+
+Por lo tanto, en base a una muestra de paquetes ARP de una LAN, podemos definir el grafo de relación entre los nodos en base a la relación anterior, proveyendo una noción complementaria de \textbf{nodo distinguido}, para aquellos nodos que tengan grados de entrada y/o salida muy elevados.

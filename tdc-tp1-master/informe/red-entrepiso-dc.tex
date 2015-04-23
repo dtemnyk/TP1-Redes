@@ -1,0 +1,52 @@
+\subsubsection{Descripción y grafo de relación entre los nodos}
+
+Realizamos una captura en la red Wi-Fi \emph{Entrepiso-DC}, disponible desde los laboratorios del Depto. de Computación. La muestra fue tomada un lunes a las 17hs aproximadamente -horario típicamente de alto tráfico-, logrando un total de 450 paquetes en 11 minutos.
+
+En el gráfico de la figura \ref{fig:entrepiso-dc-grafo} se presenta el grafo dirigido representando la red. En el mismo se observa una gran cantidad de nodos ligada al nodo con IP \emph{10.1.200.197}, y luego múltiples conjuntos pequeños de nodos conectados entre sí pero disconexos de la estructura mayoritaria. Es decir, a diferencia de las demás redes observadas, esta presentó una gran cantidad de pequeños clusters independientes.
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.6\linewidth]{../imgs/red-entrepiso-dc_red.png}
+    \caption{Grafo mostrando la topología de la red \emph{Entrepiso-DC}.}
+    \label{fig:entrepiso-dc-grafo}
+  \end{center}
+\end{figure}
+
+\subsubsection{Fuente: $S_{dst}$}
+
+\begin{figure}[H]\centering
+    \includegraphics[width=\linewidth]{../imgs/red-entrepiso-dc_S_dst_hist.png}
+    \caption{Histograma de $S_{dst}$}\label{fig:entrepiso-dc-dst-hist}
+\end{figure}
+
+\begin{figure}[H]\centering
+    \includegraphics[width=\linewidth]{../imgs/red-entrepiso-dc_S_dst_info.png}
+    \caption{Informacion de $S_{dst}$}\label{fig:entrepiso-dc-dst-info}
+\end{figure}
+
+$\bullet$ Entropía de la fuente: 6.95 sobre un máximo posible de 7.58
+
+En las figuras \ref{fig:entrepiso-dc-dst-hist} y \ref{fig:entrepiso-dc-dst-info} se presentan los gráficos tipo histograma e información para la fuente $S_{dst}$. En este caso, hay múltiples nodos con una frecuencia mucho mayor que la media, siendo distinguidos aproximadamente 10 nodos según el criterio de la sección \ref{subsec:modelos-fuente-informacion}.
+
+\subsubsection{Fuente: $S_{src}$}
+
+\begin{figure}[H]\centering
+    \includegraphics[width=\linewidth]{../imgs/red-entrepiso-dc_S_src_hist.png}
+    \caption{Histograma de $S_{src}$}\label{fig:entrepiso-dc-src-hist}
+\end{figure}
+
+\begin{figure}[H]\centering
+    \includegraphics[width=\linewidth]{../imgs/red-entrepiso-dc_S_src_info.png}
+    \caption{Informacion de $S_{src}$}\label{fig:entrepiso-dc-src-info}
+\end{figure}
+
+$\bullet$ Entropía de la fuente: 2.03 sobre un máximo posible de 5.00
+
+En las figuras \ref{fig:entrepiso-dc-src-hist} y \ref{fig:entrepiso-dc-src-info} se presentan los gráficos tipo histograma e información para la fuente $S_{src}$. A diferencia de la fuente $S_{dst}$, en este caso hay un único nodo distinguido, el de IP \emph{10.1.200.197}.
+
+\subsubsection{Discusión}
+
+En el caso de esta red, la entropía de la fuente $S_{dst}$ es mucho más alta en términos relativos (92\% de la máxima posible) que la de la fuente $S_{src}$ (41\%). Esto es previsible dados los gráficos de información, dado que $S_{src}$ tiene una estructura más jerarquizada respecto al nodo distinguido; complementándose con lo que se observa en el gráfico del grafo.
+Enfocando el análisis el cluster que aglomera la mayor cantidad de nodos, la IP \emph{10.1.200.197} es la que envía y recibe mayor cantidad de paquetes, y por lo tanto pareciera tratarse del gateway.
+
+Suponemos que son pequeños grupos de terminales que se comunican entre sí, pero no con el conjunto general (que suponemos que lleva a Internet). Una posibilidad es que sean máquinas de oficina que accedan entre si, o a una terminal que da un servicio (ej. impresora).
