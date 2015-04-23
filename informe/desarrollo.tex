@@ -1,1 +1,20 @@
 \section{Desarrollo}
+
+Para analizar el tráfico en las redes, contamos con una fuente provista por la cátedra, que identifica los distintos tipos de paqetes capturados.
+
+\begin{itemize}
+\item $S=\{s_1 ... s_n\}$ siendo $s_i$ el valor del campo \textit{type} del frame de capa 2.\\
+\end{itemize}
+
+Por otro lado, se nos pide que propongamos una fuente que nos permita distinguir nodos de una red en base al tráfico ARP. Por tal motivo, los símbolos de dicha fuente tendrían que estar conformados por campos de paquetes ARP.
+
+Creemos que para poder distinguir nodos en una red es necesario obtener los campos $fuente$ y $destino$ de un paquete, ya que estos nos permiten identificar sobre qué nodos se concentra el tráfico ARP.
+
+Dicho esto, la fuente propuesta es la siguiente:
+
+\begin{itemize}
+\item $S=\{s_1 ... s_n\}$ siendo $s_i$ el valor del campo \textit{source} y \textit{destination} de los paquetes ARP.\\
+\end{itemize}
+
+
+Dadas estas fuentes podemos obtener la información del evento $E_i$: aparicion del símbolo $s_i$
