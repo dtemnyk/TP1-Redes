@@ -1,5 +1,7 @@
 ## Import Scapy module
 from scapy.all import *
+import pydot
+
 ## Create a Packet Count var
 packetCount = 0
 type_dictionary = {}
@@ -31,7 +33,9 @@ def action_only_type(my_packet):
         file_.write(string_dictionary)
 
     if packet_type == '2054':  # ARP
-        distinguished_field = my_packet[ARP].pdst
+        src = my_packet[ARP].psrc
+        dst = my_packet[ARP].pdst
+        distinguished_field = src + '-' + dst
 
         if distinguished_field in dist_dictionary:
             dist_dictionary[distinguished_field] += 1
@@ -43,7 +47,21 @@ def action_only_type(my_packet):
         with open('dist.txt', 'w') as file_:
             file_.write(string_dist_dictionary)
 
+    if packetCount == 5000:
+        plot_network()
+
     return return_value
+
+
+def plot_network():
+    graph = pydot.Dot(graph_type='digraph')
+    for dist in dist_dictionary:
+        n_from = str(dist.split('-')[0])
+        n_to = str(dist.split('-')[1])
+        label = str(dist_dictionary.get(dist))
+        edge = pydot.Edge(n_from, n_to, label=label, color="blue")
+        graph.add_edge(edge)
+    graph.write_png('imgs/test.png'.format(basename='test'), prog='neato')
 
 ## Setup sniff
 sniff(prn=action_only_type)
