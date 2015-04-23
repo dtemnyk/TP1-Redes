@@ -1,0 +1,10 @@
+-- Instalar las siguientes librerias:
+
+scapy
+pydot
+numpy
+matplotlib
+
+-- Se corre asi (cambiando las carpetas):
+
+sudo /home/pato/.virtualenvs/tpredes/bin/python2.7 /home/pato/workspace/tpredes/sniffer.py
