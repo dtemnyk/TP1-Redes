@@ -1,0 +1,146 @@
+% Configuración del tipo páginas
+	\documentclass[11pt, a4paper,english,spanish]{article}
+	\parindent = 11pt
+	\parskip = 0 pt	
+	\usepackage[width=15.5cm, left=3cm, top=2.5cm, height= 24.5cm]{geometry}
+
+% Paquete para reconocer la separación en sílabas en español
+	\usepackage[utf8]{inputenc}
+	\usepackage[spanish]{babel}
+
+% Paquetes especiales
+	\usepackage{amsmath}
+	\usepackage{amsthm} %paquete para teoremas y propiedades
+	\usepackage{amsfonts}
+	\usepackage{amssymb}
+	\usepackage[pdftex]{graphicx}
+	\usepackage{float}
+	\usepackage{graphicx} %paquete para incluir imagenes
+
+	\usepackage{caption}
+	\usepackage{subcaption}
+
+
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{tabularx}
+\usepackage{multirow}
+
+% Paquete para incluir hypervinculos
+	\usepackage{color}
+	\usepackage{url}
+	\definecolor{lnk}{rgb}{0,0,0.4}
+	%colores para la inclusion del codigo
+	\definecolor{gray97}{gray}{.97}
+	\definecolor{gray75}{gray}{.75}
+	\definecolor{gray45}{gray}{.45}
+	\usepackage[colorlinks=true,linkcolor=lnk,citecolor=black,urlcolor=black]{hyperref}
+
+	\newcommand{\todo}{\textbf{\textcolor{red}{TODO: }}}
+
+% Paquete para armar índices
+	\usepackage{makeidx}
+	\makeindex
+
+\renewcommand{\thefootnote}{\arabic{footnote}} %config de footnote
+
+%Paquete y su config para incluir los codigos de c++
+\usepackage{times}
+\usepackage{listings}
+
+
+\lstset{ frame=Ltb,
+framerule=0pt,
+aboveskip=0.5cm,
+framextopmargin=3pt,
+framexbottommargin=3pt,
+framexleftmargin=0.4cm,
+framesep=0pt,
+rulesep=.4pt,
+backgroundcolor=\color{gray97},
+rulesepcolor=\color{black},
+tabsize=2,
+%
+stringstyle=\ttfamily,
+showstringspaces = false,
+basicstyle=\scriptsize\ttfamily,
+commentstyle=\color{gray45},
+keywordstyle=\bfseries,
+language=C++,
+%
+numbers=left,
+numbersep=15pt,
+numberstyle=\tiny,
+numberfirstline = false,
+breaklines=true,
+}
+
+\lstset{emph={%  
+    Coord, SolucionEj1, SolucionEj2%
+    }, emphstyle={\bfseries}%
+}%
+
+% minimizar fragmentado de listados
+\lstnewenvironment{listing}[1][]
+{\lstset{#1}\pagebreak[0]}{\pagebreak[0]}
+
+\lstdefinestyle{C++}
+{language=C++}
+
+\lstdefinestyle{Python}
+{language=Python}
+
+	
+% Carátula
+	\usepackage{caratula}
+
+	%\usepackage[vlined,tworuled,commentsnumbered,linesnumbered]{algorithm2e}
+
+% Más espacio entre líneas
+	\parskip=1.5pt
+
+\newcommand{\comment}[1]{\emph{// {#1}\;}} 
+\newcommand{\la}{\(\leftarrow\)}
+\newcommand{\ra}{\(\rightarrow\)}
+
+\hypersetup{ 
+pdfauthor = {},
+pdftitle = {}, 
+pdfkeywords = {},
+pdfstartview={XYZ null null 0.80},
+}
+
+\begin{document}
+\titulo{TP1: Wiretapping}
+%\subtitulo{Grupo ???}
+%\resumen{
+%	\textbf{Resumen: } \\ \\
+%	\indent \textbf{Keywords: }
+%}
+\fecha{Fecha de entrega: 29 de Abril}
+\materia{Teoría de las Comunicaciones}
+\integrante{Ignacio Gleria}{387/10}{igleria@dc.uba.ar}
+\integrante{Patricio Mosse}{515/06}{patricio.mosse@gmail.com}
+\integrante{David Temnyk}{779/10}{dtemnyk@dc.uba.ar}
+\integrante{Gustavo Torrecilla}{833/10}{gustavo.d.t\_90@hotmail.com}
+
+\maketitle
+% Índice
+\newpage \printindex \tableofcontents
+\normalsize
+
+\newpage
+
+\input{introduccion.tex}
+\newpage
+\input{desarrollo.tex}
+\newpage
+\input{experimentacion.tex}
+\newpage
+\input{discusion.tex}
+\newpage
+\input{conclusion.tex}
+
+
+\end{document}
