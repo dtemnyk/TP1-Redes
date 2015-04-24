@@ -1,10 +1,13 @@
--- Instalar las siguientes librerias:
+-- Instalar las siguientes librerias (usando sudo apt-get install o usando pip install):
 
 scapy
 pydot
 numpy
+pickle
 matplotlib
 
--- Se corre asi (cambiando las carpetas):
+-- Crear una carpeta imgs en la carpeta donde este el script de Python
+
+-- Moverse a la carpeta donde este el script de Pythn y correr lo siguiente (cambiandolo para que apunte a las carpetas correctas de Python y del script):
 
 sudo /home/pato/.virtualenvs/tpredes/bin/python2.7 /home/pato/workspace/tpredes/sniffer.py
