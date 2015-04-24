@@ -1,6 +1,7 @@
 ## Import Scapy module
 from scapy.all import *
 import pydot
+import pickle
 import matplotlib.pyplot as plt
 
 ## Create a Packet Count var
@@ -28,10 +29,12 @@ def action_only_type(my_packet):
     else:
         type_dictionary[packet_type] = 1
 
-    # Saves to a file the dictionary where it counts the appearences for each type
-    string_dictionary = ', '.join("{!s}={!r}".format(k, v) for (k, v) in type_dictionary.items())
-    with open('types.txt', 'w') as file_:
-        file_.write(string_dictionary)
+    if packetCount % 1000 == 0:
+        # Saves to a file the dictionary where it counts the appearences for each type
+        string_dictionary = ', '.join("{!s}={!r}".format(k, v) for (k, v) in type_dictionary.items())
+        with open('types.txt', 'w') as file_:
+            file_.write(string_dictionary)
+        pickle.dump(type_dictionary, open("type_dictionary.p", "wb"))
 
     if packet_type == '2054':  # ARP
         src = my_packet[ARP].psrc
@@ -43,13 +46,15 @@ def action_only_type(my_packet):
         else:
             dist_dictionary[distinguished_field] = 1
 
-        # Saves to a file the dictionary where it counts the appearences for each distinguished field
-        string_dist_dictionary = ', '.join("{!s}={!r}".format(k, v) for (k, v) in dist_dictionary.items())
-        with open('dist.txt', 'w') as file_:
-            file_.write(string_dist_dictionary)
+        if packetCount % 1000 == 0:
+            # Saves to a file the dictionary where it counts the appearences for each distinguished field
+            string_dist_dictionary = ', '.join("{!s}={!r}".format(k, v) for (k, v) in dist_dictionary.items())
+            with open('dist.txt', 'w') as file_:
+                file_.write(string_dist_dictionary)
+            pickle.dump(dist_dictionary, open("dist_dictionary.p", "wb"))
 
     # Arbitrary number to plot the network
-    if packetCount == 500:
+    if packetCount % 1000 == 0:
         plot_network()
         calculate_entropy()
         plot_histogram()
