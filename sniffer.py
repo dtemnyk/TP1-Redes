@@ -51,8 +51,9 @@ def action_only_type(my_packet):
         pickle.dump(dist_dictionary, open("dist_dictionary.p", "wb"))
 
         plot_network()
-        calculate_entropy()
-        plot_histogram()
+        entropy = calculate_entropy()
+        plot_histogram_types()
+        plot_histogram_source(entropy)
 
     return return_value
 
@@ -68,15 +69,30 @@ def calculate_entropy():
     return entropy
 
 
-def compute_histogram():
+def compute_types_histogram():
     hist = collections.OrderedDict()
     for packet_type in type_dictionary:
         hist[packet_type] = type_dictionary.get(packet_type)
     return hist
 
 
-def plot_histogram():
-    hist = compute_histogram()
+def compute_source_histogram():
+    source_dictionary = {}
+    for dist in dist_dictionary:
+        source = dist.split('-')[0]
+        if source in source_dictionary:
+            source_dictionary[source] += dist_dictionary.get(dist)
+        else:
+            source_dictionary[source] = dist_dictionary.get(dist)
+
+    hist = collections.OrderedDict()
+    for source in source_dictionary:
+        hist[source] = source_dictionary.get(source)
+    return hist
+
+
+def plot_histogram_types():
+    hist = compute_types_histogram()
     basename = 'Basename'
     source = 'Source'
     x, y = [20 * i for i in range(len(hist))], hist.values()
@@ -87,8 +103,25 @@ def plot_histogram():
     plt.bar(x, y, align='center')
     plt.xticks(x, labels, size='small', rotation='vertical', fontsize=18)
     plt.title('Cant. Tipos: {source}'.format(source=source), fontsize=18)
-    plt.xlabel("IP", fontsize=15)
-    plt.ylabel("Cantidad de Tipos", fontsize=18)
+    plt.xlabel("Tipos", fontsize=15)
+    plt.ylabel("Cantidad", fontsize=18)
+    f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
+
+
+def plot_histogram_source(entropy):
+    hist = compute_source_histogram()
+    basename = 'Basename2'
+    source = 'Source2'
+    x, y = [20 * i for i in range(len(hist))], hist.values()
+    labels = hist.keys()
+    f = plt.figure('hist_{source}'.format(source=source), [16, 9])
+    f.subplots_adjust(bottom=0.2)
+    plt.bar(x, y, align='center')
+    plt.xticks(x, labels, size='small', rotation='vertical', fontsize=18)
+    plt.title('Cant. IPs Fuente: {source}'.format(source=source), fontsize=18)
+    plt.xlabel("IPs Fuente", fontsize=15)
+    plt.ylabel("Cantidad", fontsize=18)
+    plt.axhline(entropy, color='r', label='entropia')
     f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
 
 
@@ -100,7 +133,7 @@ def plot_network():
         label = str(dist_dictionary.get(dist))
         edge = pydot.Edge(n_from, n_to, label=label, color="blue")
         graph.add_edge(edge)
-    graph.write_png('imgs/test.png'.format(basename='test'), prog='neato')
+    graph.write_png('imgs/network.png'.format(basename='test'), prog='neato')
 
 ## Setup sniff
 sniff(prn=action_only_type)
