@@ -9,7 +9,8 @@ import collections
 packetCount = 0
 type_dictionary = {}
 dist_dictionary = {}
-
+dst_dictionary = {}
+source_dictionary = {}
 
 ## Define our Custom Action function
 def action_only_type(my_packet):
@@ -51,25 +52,58 @@ def action_only_type(my_packet):
             file_.write(string_dist_dictionary)
         pickle.dump(dist_dictionary, open("dist_dictionary.p", "wb"))
 
+
+#calculo source dictionary
+        
+        for dist in dist_dictionary:
+            source = dist.split('-')[0]
+            if source in source_dictionary:
+                source_dictionary[source] += dist_dictionary.get(dist)
+            else:
+                source_dictionary[source] = dist_dictionary.get(dist)
+
+#calculo dst dictionary
+        
+        for dist in dist_dictionary:
+            dst = dist.split('-')[1]
+            if dst in dst_dictionary:
+                dst_dictionary[dst] += dist_dictionary.get(dist)
+            else:
+                dst_dictionary[dst] = dist_dictionary.get(dist)
+
+
         plot_network()
-        entropy = calculate_entropy()
+        entropy = calculate_entropy(type_dictionary)
+        entropy_source=calculate_entropy(source_dictionary)
+        entropy_dst=calculate_entropy(dst_dictionary)
         plot_histogram_types()
-        plot_histogram_source(entropy)
+        plot_histogram_source()
         plot_histogram_dst()
+        plot_histogram_types_information(entropy)
+        plot_histogram_source_information(entropy_source)
+        plot_histogram_dst_information(entropy_dst)
 
     return return_value
 
 
-def calculate_entropy():
+def calculate_entropy(dictionary):
     entropy = 0
-    for packet_type in type_dictionary:
-        probability = float(type_dictionary.get(packet_type)) / packetCount
+    for packet in dictionary:
+        probability = float(dictionary.get(packet)) / packetCount
         log_of_prob = math.log(probability, 2)
         entropy += probability * log_of_prob
     entropy = -entropy
     print('Entropy: ' + str(entropy))
     return entropy
 
+
+def compute_types_information_histogram():
+    hist = collections.OrderedDict()
+    for packet_type in type_dictionary:
+        probability = float(type_dictionary.get(packet_type)) / packetCount
+        log_of_prob = math.log(probability, 2) * (-1)
+        hist[packet_type] = log_of_prob
+    return hist
 
 def compute_types_histogram():
     hist = collections.OrderedDict()
@@ -78,30 +112,30 @@ def compute_types_histogram():
     return hist
 
 
-def compute_source_histogram():
-    source_dictionary = {}
-    for dist in dist_dictionary:
-        source = dist.split('-')[0]
-        if source in source_dictionary:
-            source_dictionary[source] += dist_dictionary.get(dist)
-        else:
-            source_dictionary[source] = dist_dictionary.get(dist)
+def compute_source_information_histogram():
+    hist = collections.OrderedDict()
+    for source in source_dictionary:
+        probability = float(source_dictionary.get(source)) / packetCount
+        log_of_prob = math.log(probability, 2) * (-1)
+        hist[source] = log_of_prob
+    return hist
 
+def compute_source_histogram():
     hist = collections.OrderedDict()
     for source in source_dictionary:
         hist[source] = source_dictionary.get(source)
     return hist
 
 
-def compute_dst_histogram():
-    dst_dictionary = {}
-    for dist in dist_dictionary:
-        dst = dist.split('-')[1]
-        if dst in dst_dictionary:
-            dst_dictionary[dst] += dist_dictionary.get(dist)
-        else:
-            dst_dictionary[dst] = dist_dictionary.get(dist)
+def compute_dst_information_histogram():
+    hist = collections.OrderedDict()
+    for dst in dst_dictionary:
+        probability = float(dst_dictionary.get(dst)) / packetCount
+        log_of_prob = math.log(probability, 2) * (-1)
+        hist[dst] = log_of_prob
+    return hist
 
+def compute_dst_histogram():
     hist = collections.OrderedDict()
     for dst in dst_dictionary:
         hist[dst] = dst_dictionary.get(dst)
@@ -124,8 +158,25 @@ def plot_histogram_types():
     plt.ylabel("Cantidad", fontsize=18)
     f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
 
+def plot_histogram_types_information(entropy):
+    hist = compute_types_information_histogram()
+    basename = 'Basename4'
+    source = 'Source4'
+    x, y = [20 * i for i in range(len(hist))], hist.values()
+    labels = hist.keys()
+    f = plt.figure('hist_{source}'.format(source=source), [16, 9])
+    f.subplots_adjust(bottom=0.2)
+    plt.xlim([-2, x[-1] + 2])
+    plt.bar(x, y, align='center')
+    plt.xticks(x, labels, size='small', rotation='vertical', fontsize=18)
+    plt.title('Cant. Tipos: {source}'.format(source=source), fontsize=18)
+    plt.xlabel("Tipos", fontsize=15)
+    plt.ylabel("Informacion", fontsize=18)
+    plt.axhline(entropy, color='r', label='entropia')
+    f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
 
-def plot_histogram_source(entropy):
+
+def plot_histogram_source():
     hist = compute_source_histogram()
     basename = 'Basename2'
     source = 'Source2'
@@ -138,6 +189,38 @@ def plot_histogram_source(entropy):
     plt.title('Cant. IPs Fuente: {source}'.format(source=source), fontsize=18)
     plt.xlabel("IPs Fuente", fontsize=15)
     plt.ylabel("Cantidad", fontsize=18)
+    f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
+
+def plot_histogram_source_information(entropy):
+    hist = compute_source_information_histogram()
+    basename = 'Basename5'
+    source = 'Source5'
+    x, y = [20 * i for i in range(len(hist))], hist.values()
+    labels = hist.keys()
+    f = plt.figure('hist_{source}'.format(source=source), [16, 9])
+    f.subplots_adjust(bottom=0.2)
+    plt.bar(x, y, align='center')
+    plt.xticks(x, labels, size='small', rotation='vertical', fontsize=18)
+    plt.title('Cant. IPs Fuente: {source}'.format(source=source), fontsize=18)
+    plt.xlabel("IPs Fuente", fontsize=15)
+    plt.ylabel("Informacion", fontsize=18)
+    plt.axhline(entropy, color='r', label='entropia')
+    f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
+
+
+def plot_histogram_dst_information(entropy):
+    hist = compute_dst_information_histogram()
+    basename = 'Basename6'
+    source = 'Source6'
+    x, y = [20 * i for i in range(len(hist))], hist.values()
+    labels = hist.keys()
+    f = plt.figure('hist_{source}'.format(source=source), [16, 9])
+    f.subplots_adjust(bottom=0.2)
+    plt.bar(x, y, align='center')
+    plt.xticks(x, labels, size='small', rotation='vertical', fontsize=18)
+    plt.title('Cant. IPs Destino: {source}'.format(source=source), fontsize=18)
+    plt.xlabel("IPs Destino", fontsize=15)
+    plt.ylabel("Informacion", fontsize=18)
     plt.axhline(entropy, color='r', label='entropia')
     f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
 
