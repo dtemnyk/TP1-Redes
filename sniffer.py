@@ -3,6 +3,7 @@ from scapy.all import *
 import pydot
 import pickle
 import matplotlib.pyplot as plt
+import collections
 
 ## Create a Packet Count var
 packetCount = 0
