@@ -12,11 +12,14 @@ dist_dictionary = {}
 dst_dictionary = {}
 source_dictionary = {}
 
+
 ## Define our Custom Action function
 def action_only_type(my_packet):
     global packetCount
     global type_dictionary
     global dist_dictionary
+    global dst_dictionary
+    global source_dictionary
     packetCount += 1
 
     if hasattr(my_packet[0], 'type'):
@@ -24,7 +27,7 @@ def action_only_type(my_packet):
         return_value = "Packet #%s: Type %s" % (packetCount, my_packet[0].type)
     else:
         packet_type = 'LLC'
-        return_value = my_packet.show()
+        return_value = 'LLC'
 
     if packet_type in type_dictionary:
         type_dictionary[packet_type] += 1
@@ -52,7 +55,6 @@ def action_only_type(my_packet):
             file_.write(string_dist_dictionary)
         pickle.dump(dist_dictionary, open("dist_dictionary.p", "wb"))
 
-
 #calculo source dictionary
         
         for dist in dist_dictionary:
@@ -71,11 +73,10 @@ def action_only_type(my_packet):
             else:
                 dst_dictionary[dst] = dist_dictionary.get(dist)
 
-
         plot_network()
         entropy = calculate_entropy(type_dictionary)
-        entropy_source=calculate_entropy(source_dictionary)
-        entropy_dst=calculate_entropy(dst_dictionary)
+        entropy_source = calculate_entropy(source_dictionary)
+        entropy_dst = calculate_entropy(dst_dictionary)
         plot_histogram_types()
         plot_histogram_source()
         plot_histogram_dst()
@@ -105,6 +106,7 @@ def compute_types_information_histogram():
         hist[packet_type] = log_of_prob
     return hist
 
+
 def compute_types_histogram():
     hist = collections.OrderedDict()
     for packet_type in type_dictionary:
@@ -119,6 +121,7 @@ def compute_source_information_histogram():
         log_of_prob = math.log(probability, 2) * (-1)
         hist[source] = log_of_prob
     return hist
+
 
 def compute_source_histogram():
     hist = collections.OrderedDict()
@@ -135,6 +138,7 @@ def compute_dst_information_histogram():
         hist[dst] = log_of_prob
     return hist
 
+
 def compute_dst_histogram():
     hist = collections.OrderedDict()
     for dst in dst_dictionary:
@@ -144,8 +148,8 @@ def compute_dst_histogram():
 
 def plot_histogram_types():
     hist = compute_types_histogram()
-    basename = 'Basename'
-    source = 'Source'
+    basename = 'TiposCantidad'
+    source = 'Source1_' + str(packetCount)
     x, y = [20 * i for i in range(len(hist))], hist.values()
     labels = hist.keys()
     f = plt.figure('hist_{source}'.format(source=source), [16, 9])
@@ -156,12 +160,14 @@ def plot_histogram_types():
     plt.title('Cant. Tipos: {source}'.format(source=source), fontsize=18)
     plt.xlabel("Tipos", fontsize=15)
     plt.ylabel("Cantidad", fontsize=18)
-    f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
+    filename = 'imgs/{basename}_hist.png'.format(basename=basename)
+    f.savefig(filename)
+
 
 def plot_histogram_types_information(entropy):
     hist = compute_types_information_histogram()
-    basename = 'Basename4'
-    source = 'Source4'
+    basename = 'TiposInformacion'
+    source = 'Source2_' + str(packetCount)
     x, y = [20 * i for i in range(len(hist))], hist.values()
     labels = hist.keys()
     f = plt.figure('hist_{source}'.format(source=source), [16, 9])
@@ -173,13 +179,14 @@ def plot_histogram_types_information(entropy):
     plt.xlabel("Tipos", fontsize=15)
     plt.ylabel("Informacion", fontsize=18)
     plt.axhline(entropy, color='r', label='entropia')
-    f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
+    filename = 'imgs/{basename}_hist.png'.format(basename=basename)
+    f.savefig(filename)
 
 
 def plot_histogram_source():
     hist = compute_source_histogram()
-    basename = 'Basename2'
-    source = 'Source2'
+    basename = 'CantIPFuenteCantidad'
+    source = 'Source3_' + str(packetCount)
     x, y = [20 * i for i in range(len(hist))], hist.values()
     labels = hist.keys()
     f = plt.figure('hist_{source}'.format(source=source), [16, 9])
@@ -189,12 +196,14 @@ def plot_histogram_source():
     plt.title('Cant. IPs Fuente: {source}'.format(source=source), fontsize=18)
     plt.xlabel("IPs Fuente", fontsize=15)
     plt.ylabel("Cantidad", fontsize=18)
-    f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
+    filename = 'imgs/{basename}_hist.png'.format(basename=basename)
+    f.savefig(filename)
+
 
 def plot_histogram_source_information(entropy):
     hist = compute_source_information_histogram()
-    basename = 'Basename5'
-    source = 'Source5'
+    basename = 'CantIPFuenteInformacion'
+    source = 'Source4_' + str(packetCount)
     x, y = [20 * i for i in range(len(hist))], hist.values()
     labels = hist.keys()
     f = plt.figure('hist_{source}'.format(source=source), [16, 9])
@@ -205,13 +214,14 @@ def plot_histogram_source_information(entropy):
     plt.xlabel("IPs Fuente", fontsize=15)
     plt.ylabel("Informacion", fontsize=18)
     plt.axhline(entropy, color='r', label='entropia')
-    f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
+    filename = 'imgs/{basename}_hist.png'.format(basename=basename)
+    f.savefig(filename)
 
 
 def plot_histogram_dst_information(entropy):
     hist = compute_dst_information_histogram()
-    basename = 'Basename6'
-    source = 'Source6'
+    basename = 'CantIPDestinoInformacion'
+    source = 'Source5_' + str(packetCount)
     x, y = [20 * i for i in range(len(hist))], hist.values()
     labels = hist.keys()
     f = plt.figure('hist_{source}'.format(source=source), [16, 9])
@@ -222,12 +232,14 @@ def plot_histogram_dst_information(entropy):
     plt.xlabel("IPs Destino", fontsize=15)
     plt.ylabel("Informacion", fontsize=18)
     plt.axhline(entropy, color='r', label='entropia')
-    f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
+    filename = 'imgs/{basename}_hist.png'.format(basename=basename)
+    f.savefig(filename)
+
 
 def plot_histogram_dst():
     hist = compute_dst_histogram()
-    basename = 'Basename3'
-    source = 'Source3'
+    basename = 'CantIPDestinoCantidad'
+    source = 'Source6_' + str(packetCount)
     x, y = [20 * i for i in range(len(hist))], hist.values()
     labels = hist.keys()
     f = plt.figure('hist_{source}'.format(source=source), [16, 9])
@@ -237,17 +249,24 @@ def plot_histogram_dst():
     plt.title('Cant. IPs Destino: {source}'.format(source=source), fontsize=18)
     plt.xlabel("IPs Destino", fontsize=15)
     plt.ylabel("Cantidad", fontsize=18)
-    f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
+    filename = 'imgs/{basename}_hist.png'.format(basename=basename)
+    f.savefig(filename)
+
 
 def plot_network():
-    graph = pydot.Dot(graph_type='digraph')
+    graph = pydot.Dot(graph_type='digraph', size="7.75,10.25")
     for dist in dist_dictionary:
         n_from = str(dist.split('-')[0])
         n_to = str(dist.split('-')[1])
+        pieces = n_from.split('.')
+        n_from = '.'.join(pieces[0:2]) + '\n' + '.'.join(pieces[2:4])
+        pieces = n_to.split('.')
+        n_to = '.'.join(pieces[0:2]) + '\n' + '.'.join(pieces[2:4])
         label = str(dist_dictionary.get(dist))
-        edge = pydot.Edge(n_from, n_to, label=label, color="blue")
+        edge = pydot.Edge(n_from, n_to, label=label, color="blue", fontsize="6.0", len='3.0')
         graph.add_edge(edge)
-    graph.write_png('imgs/network.png'.format(basename='test'), prog='neato')
+    filename = 'imgs/Network.png'.format(basename='test')
+    graph.write_png(filename, prog='neato')
 
 ## Setup sniff
 sniff(prn=action_only_type, store=0)
