@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 packetCount = 0
 type_dictionary = {}
 dist_dictionary = {}
+i = 0
 
 
 ## Define our Custom Action function
@@ -15,6 +16,7 @@ def action_only_type(my_packet):
     global packetCount
     global type_dictionary
     global dist_dictionary
+    global i
     packetCount += 1
 
     if hasattr(my_packet[0], 'type'):
@@ -22,7 +24,7 @@ def action_only_type(my_packet):
         return_value = "Packet #%s: Type %s" % (packetCount, my_packet[0].type)
     else:
         packet_type = 'LLC'
-        return_value = my_packet.show()
+        return_value = 'LLC Packet #%s' % packetCount
 
     if packet_type in type_dictionary:
         type_dictionary[packet_type] += 1
@@ -40,20 +42,26 @@ def action_only_type(my_packet):
             dist_dictionary[distinguished_field] = 1
 
     if packetCount % 1000 == 0:
-        string_dictionary = ', '.join("{!s}={!r}".format(k, v) for (k, v) in type_dictionary.items())
-        with open('types.txt', 'w') as file_:
-            file_.write(string_dictionary)
-        pickle.dump(type_dictionary, open("type_dictionary.p", "wb"))
+        #string_dictionary = ', '.join("{!s}={!r}".format(k, v) for (k, v) in type_dictionary.items())
+        #with open('types.txt', 'w') as file_:
+        #    file_.write(string_dictionary)
+        pickle.dump(type_dictionary, open("output/type_dictionary{number}.p".format(number=i), "wb"))
 
-        string_dist_dictionary = ', '.join("{!s}={!r}".format(k, v) for (k, v) in dist_dictionary.items())
-        with open('dist.txt', 'w') as file_:
-            file_.write(string_dist_dictionary)
-        pickle.dump(dist_dictionary, open("dist_dictionary.p", "wb"))
+        #string_dist_dictionary = ', '.join("{!s}={!r}".format(k, v) for (k, v) in dist_dictionary.items())
+        #with open('dist.txt', 'w') as file_:
+        #    file_.write(string_dist_dictionary)
+        pickle.dump(dist_dictionary, open("output/dist_dictionary{number}.p".format(number=i), "wb"))
 
-        plot_network()
-        entropy = calculate_entropy()
-        plot_histogram_types()
-        plot_histogram_source(entropy)
+        i += 1
+        #We reset the dictionaries
+        type_dictionary = {}
+        dist_dictionary = {}
+
+        #We won't plot now
+        #plot_network()
+        #entropy = calculate_entropy()
+        #plot_histogram_types()
+        #plot_histogram_source(entropy)
 
     return return_value
 

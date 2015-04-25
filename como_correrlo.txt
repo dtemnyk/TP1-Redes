@@ -6,7 +6,7 @@ numpy
 pickle
 matplotlib
 
--- Crear una carpeta imgs en la carpeta donde este el script de Python
+-- Crear una carpeta imgs en la carpeta donde este el script de Python y otra carpeta output
 
 -- Moverse a la carpeta donde este el script de Pythn y correr lo siguiente (cambiandolo para que apunte a las carpetas correctas de Python y del script):
 
