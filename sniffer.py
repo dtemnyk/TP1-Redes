@@ -55,6 +55,7 @@ def action_only_type(my_packet):
         entropy = calculate_entropy()
         plot_histogram_types()
         plot_histogram_source(entropy)
+        plot_histogram_dst()
 
     return return_value
 
@@ -92,6 +93,21 @@ def compute_source_histogram():
     return hist
 
 
+def compute_dst_histogram():
+    dst_dictionary = {}
+    for dist in dist_dictionary:
+        dst = dist.split('-')[1]
+        if dst in dst_dictionary:
+            dst_dictionary[dst] += dist_dictionary.get(dist)
+        else:
+            dst_dictionary[dst] = dist_dictionary.get(dist)
+
+    hist = collections.OrderedDict()
+    for dst in dst_dictionary:
+        hist[dst] = dst_dictionary.get(dst)
+    return hist
+
+
 def plot_histogram_types():
     hist = compute_types_histogram()
     basename = 'Basename'
@@ -125,6 +141,20 @@ def plot_histogram_source(entropy):
     plt.axhline(entropy, color='r', label='entropia')
     f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
 
+def plot_histogram_dst():
+    hist = compute_dst_histogram()
+    basename = 'Basename3'
+    source = 'Source3'
+    x, y = [20 * i for i in range(len(hist))], hist.values()
+    labels = hist.keys()
+    f = plt.figure('hist_{source}'.format(source=source), [16, 9])
+    f.subplots_adjust(bottom=0.2)
+    plt.bar(x, y, align='center')
+    plt.xticks(x, labels, size='small', rotation='vertical', fontsize=18)
+    plt.title('Cant. IPs Destino: {source}'.format(source=source), fontsize=18)
+    plt.xlabel("IPs Destino", fontsize=15)
+    plt.ylabel("Cantidad", fontsize=18)
+    f.savefig('imgs/{basename}_{source}_hist.png'.format(basename=basename, source=source))
 
 def plot_network():
     graph = pydot.Dot(graph_type='digraph')
