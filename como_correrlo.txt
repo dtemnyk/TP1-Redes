@@ -13,4 +13,4 @@ matplotlib
 sudo /home/pato/.virtualenvs/tpredes/bin/python2.7 /home/pato/workspace/tpredes/sniffer.py
 
 
-sudo /home/pato/.virtualenvs/tpredes/bin/python2.7 /home/pato/workspace/tpredes/graph_all.py
+sudo /home/pato/.virtualenvs/tpredes/bin/python2.7 /home/pato/workspace/TP1-Redes/graph_all.py
