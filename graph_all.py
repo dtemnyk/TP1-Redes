@@ -54,7 +54,7 @@ def calculate_packet_entropy():
 def calculate_dst_entropy():
     entropy = 0
     for dst in dst_dictionary:
-        probability = float(dst_dictionary.get(dst)) / packet_count
+        probability = float(dst_dictionary.get(dst)) / type_dictionary.get('2054')
         log_of_prob = math.log(probability, 2)
         entropy += probability * log_of_prob
     entropy = -entropy
