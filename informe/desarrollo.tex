@@ -3,26 +3,28 @@
 Para analizar el tráfico en las redes, contamos con una fuente de información provista por la cátedra, que identifica los distintos tipos de paquetes capturados.
 
 \begin{itemize}
-\item $S=\{s_1 ... s_n\}$ siendo $s_i$ el valor del campo \textit{type} del frame de capa 2.\\
+\item $S=\{s_1 ... s_n\}$ siendo $s_i$ el valor del campo \textit{type} del frame de capa 2.
 \end{itemize}
 
 Adicionalmente, se nos pide que propongamos una fuente que nos permita distinguir nodos de una red en base al tráfico ARP. Por tal motivo, los símbolos de dicha fuente tendrían que estar conformados por campos de paquetes ARP.
 
-Creemos que para poder distinguir nodos en una red es necesario obtener los campos $fuente$ y $destino$ de un paquete, ya que estos nos permiten identificar sobre qué nodos se concentra el tráfico ARP.
+Creemos que para poder distinguir nodos en una red es necesario obtener el campo $destino$ de un paquete, ya que éste nos permite identificar sobre qué nodos se concentra el tráfico ARP.
 
 Dicho esto, la fuente propuesta es la siguiente:
 
 \begin{itemize}
-\item $S=\{s_1 ... s_n\}$ siendo $s_i$ el valor del campo \textit{source} y \textit{destination} de los paquetes ARP.\\
+\item $S=\{s_1 ... s_n\}$ siendo $s_i$ el valor del campo \textit{destination} de los paquetes ARP.
 \end{itemize}
 
 
 Dadas estas fuentes, podemos obtener la \textit{información} del evento ``aparicion del símbolo $s$'' de la siguiente manera:
 
-$I(s) = -log(P(s))$, donde $I(s)$ representa la información obtenida con cada aparición del simbolo $s$, y $P(s)$ la probabilidad de aparición de un simbolo $s$.\\
+$I(s) = -log(P(s))$, donde $I(s)$ representa la información obtenida con cada aparición del simbolo $s$, y $P(s)$ la probabilidad de aparición de un simbolo $s$.
 
 Además, podemos calcular la \textit{entropía} de una fuente obteniendo la esperanza de la información de los eventos, como se muestra a continuación:
 
 $H(S) = \sum_{s \in S} P(s) I(s)$
+
+Para nosotros, un \textbf{nodo distinguido} va a ser aquel cuya información se encuentre por debajo de la entropía de la fuente.
 
 
