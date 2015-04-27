@@ -80,7 +80,7 @@ def compute_types_histogram():
 def compute_dst_information_histogram():
     hist = collections.OrderedDict()
     for dst in dst_dictionary:
-        probability = float(dst_dictionary.get(dst)) / packet_count
+        probability = float(dst_dictionary.get(dst)) / type_dictionary.get('2054')
         log_of_prob = math.log(probability, 2) * (-1)
         hist[dst] = log_of_prob
     return hist
