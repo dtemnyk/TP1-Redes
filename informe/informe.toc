@@ -1,0 +1,14 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{3}{section.1}
+\contentsline {section}{\numberline {2}Desarrollo}{4}{section.2}
+\contentsline {section}{\numberline {3}Experimentaci\IeC {\'o}n}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Red Hogare\IeC {\~n}a}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Red Mc Dondald's}{6}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Otra Red}{7}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Red Laboratorios DC}{8}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Descripci\IeC {\'o}n}{8}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Fuente: Destino}{9}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}Fuente: Origen}{9}{subsubsection.3.4.3}
+\contentsline {subsubsection}{\numberline {3.4.4}Discusi\IeC {\'o}n}{9}{subsubsection.3.4.4}
+\contentsline {section}{\numberline {4}Discusi\IeC {\'o}n}{10}{section.4}
+\contentsline {section}{\numberline {5}Conclusi\IeC {\'o}n}{11}{section.5}
