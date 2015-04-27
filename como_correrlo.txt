@@ -11,3 +11,6 @@ matplotlib
 -- Moverse a la carpeta donde este el script de Pythn y correr lo siguiente (cambiandolo para que apunte a las carpetas correctas de Python y del script):
 
 sudo /home/pato/.virtualenvs/tpredes/bin/python2.7 /home/pato/workspace/tpredes/sniffer.py
+
+
+sudo /home/pato/.virtualenvs/tpredes/bin/python2.7 /home/pato/workspace/tpredes/graph_all.py
