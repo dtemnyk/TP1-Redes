@@ -1,27 +1,40 @@
 \subsection{Red Laboratorios DC}
 
-Para este experimento, capturamos los paquetes de la LAN Wi-Fi Laboratorios-DC del Departamento de Computació de la FCEyN de la UBA. La medición fue realizada un día Lunes desde las 15hs y durante 15 minutos. La cantidad de paquetes capturados es de 19.000. De todos estos, sólo 974 corresponden al protocolo ARP.
+Para este experimento, capturamos los paquetes de la LAN Wi-Fi Laboratorios-DC del Departamento de Computació de la FCEyN de la UBA. La medición fue realizada un día Lunes desde las 15hs y durante 15 minutos. La cantidad de paquetes capturados es de 4000. De todos estos, sólo 164 corresponden al protocolo ARP.
 
-\subsubsection{Descripción}
+\begin{figure}[H]
+       \centering
+       \includegraphics[width=1\textwidth]{../resultados/labo-corrida3/histogram_types.png}
+       \caption{Protocolos de los paquetes capturados}
+       \label{red-hogarena-types}
+\end{figure}
 
-A continuación mostramos un grafo que muestra los nodos de la red con su dirección IP y la cantidad de mensajes de tipo \emph{who-has}.
-
-%\begin{figure}[H]
-% \begin{center}
-%  \includegraphics[width=0.9\linewidth]{/home/pato/workspace/TP1-Redes/informe/imgs/red_dc/network.png}
-%  \caption{Grafo Medición DC}
-% \end{center}
-%\end{figure}
-
-Como podemos ver en el grafo, la red tiene dos nodos que se destacan. Uno de estos nodos, el cual tiene la dirección IP \emph{117.17.12.1}, recibe muchos paquetes de la mayoría de los otros nodos de la red, pero no envía ninguno. Y el otro, con dirección IP \emph{117.17.12.2} recibe varios paquetes y también envía varios.
-
-También podemos observar que hay un nodo con dirección \emph{0.0.0.0}, el cual envía varios mensajes. %TODO explicar qué es el 0.0.0.0
-
-\subsubsection{Fuente: Destino}
+\begin{figure}[H]
+       \centering
+       \includegraphics[width=1\textwidth]{../resultados/labo-corrida3/histogram_types_information.png}
+       \caption{Información de los protocolos de los paquetes capturados}
+       \label{red-hogarena-types-info}
+\end{figure}
 
 
-\subsubsection{Fuente: Origen}
+\begin{figure}[H]
+       \centering
+       \includegraphics[width=1\textwidth]{../resultados/labo-corrida3/histogram_dst.png}
+       \caption{IPs destino de los paquetes ARP}
+       \label{red-hogarena-arp-destination}
+\end{figure}
 
+\begin{figure}[H]
+       \centering
+       \includegraphics[width=1\textwidth]{../resultados/labo-corrida3/histogram_dst_information.png}
+       \caption{Información de IPs destino de los paquetes ARP}
+       \label{red-hogarena-arp-destination-info}
+\end{figure}
 
+\begin{figure}[H]
+       \centering
+       \includegraphics[width=1\textwidth]{../resultados/labo-corrida3/network.png}
+       \caption{Tráfico de paquetes ARP}
+       \label{red-hogarena-arp-traffic}
+\end{figure}
 
-\subsubsection{Discusión}
