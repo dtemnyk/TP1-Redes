@@ -1,5 +1,10 @@
 \section{Experimentación}
-Realizamos mediciones en distintas redes: una red hogareña, un McDonalds, un Starbucks, el laboratorio del DC y en el Subte.
+La experimentación consto en capturar el tráfico de paquetes, utilizando la herramienta previamente desarrollada, en las siguientes redes: una red hogareña, un McDonalds, un Starbucks, el laboratorio del DC y en el Subte.
+
+La herramienta desarrollada no solo captura el tráfico de paquetes, sino también que hace una distinción de tipos de paquetes (qué protocolos usan), y en caso de que sean ARP toma su IP destino. Luego con esta información se procede a calcular las probabilidades de aparición de cada tipo de paquete, contando la cantidad de apariciones de un paquete sobre el total de los paquetes capturados. De manera análoga se calcula las probabilidades de aparición de las IPs destino en los paquetes ARP. Una vez calculadas las probabilidades, es facil realizar el calculo de informacion de cada evento, y las entropías de las distintas fuentes, aplicando las formulas presentadas en el \textit{Desarrollo}.\\
+
+Luego se realizaron histogramas para tener una visualización de la cantidad de apariciones de cada evento, asi también como la información de los mismos.
+Por ultimo realizamos un grafo que representa el tráfico de paquetes en cada red, para poder comprender con mayor claridad lo que sucede en cada una de estas redes.
 \newpage
 
 \input{red1.tex}
