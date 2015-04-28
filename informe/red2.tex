@@ -16,7 +16,7 @@ Para el siguiente experimento, capturamos los paquetes de la LAN Wi-Fi pública 
        \label{red-hogarena-types}
 \end{figure}
 
-Como podemos observar, de acuerdo a la definición de protocolo distinguido que dimos anteriormente, el protocolo IPv4 sería el único distinguido en esta fuente. Esto resulta razonable, ya que la cantidad de paquetes IPv4 es mucho mayor que la cantidad de paquetes IPv6, LLC y ARP. La información de los paquetes IPv4 es \textbf{COMPLETAR}, mientras que la entropía de la fuente es \textbf{COMPLETAR}. Se observa claramente como la información es menor a la entropía.
+Como podemos observar, de acuerdo a la definición de protocolo distinguido que dimos anteriormente, el protocolo IPv4 sería el único distinguido en esta fuente. Esto resulta razonable, ya que la cantidad de paquetes IPv4 es mucho mayor que la cantidad de paquetes IPv6, LLC y ARP. La información de los paquetes IPv4 es \textbf{0.118172764791}, mientras que la entropía de la fuente es \textbf{0.51288679091}. Se observa claramente como la información es menor a la entropía.
 
 \begin{figure}[H]
        \centering
@@ -32,16 +32,16 @@ Como podemos observar, de acuerdo a la definición de protocolo distinguido que 
        \label{red-hogarena-arp-destination-info}
 \end{figure}
 
-En este caso el valor de la entropía es de \textbf{COMPLETAR}, y se pueden observar ocho IPs que se encuentran debajo de este valor, por lo que consideramos que son nodos distinguidos en la red. Dichas IPs son:
+En este caso el valor de la entropía es de \textbf{5.22269613542}, y se pueden observar ocho IPs que se encuentran debajo de este valor, por lo que consideramos que son nodos distinguidos en la red. Dichas IPs son:
 \begin{itemize}
-\item IP: \textit{192.168.2.1} con valor de información de \textbf{COMPLETAR}
-\item IP: \textit{172.17.8.1} con valor de información de \textbf{COMPLETAR}
-\item IP: \textit{192.168.0.1} con valor de información de \textbf{COMPLETAR}
-\item IP: \textit{169.254.70.115} con valor de información de \textbf{COMPLETAR}
-\item IP: \textit{169.254.123.32} con valor de información de \textbf{COMPLETAR}
-\item IP: \textit{17.173.254.222} con valor de información de \textbf{COMPLETAR}
-\item IP: \textit{17.173.254.223} con valor de información de \textbf{COMPLETAR}
-\item IP: \textit{169.254.137.106} con valor de información de \textbf{COMPLETAR}
+\item IP: \textit{192.168.2.1} con valor de información de \textbf{4.16992500144}
+\item IP: \textit{172.17.8.1} con valor de información de \textbf{2.57556380272}
+\item IP: \textit{192.168.0.1} con valor de información de \textbf{4.45003292064}
+\item IP: \textit{169.254.70.115} con valor de información de \textbf{4.88815403303}
+\item IP: \textit{169.254.123.32} con valor de información de \textbf{3.41608558871}
+\item IP: \textit{17.173.254.222} con valor de información de \textbf{4.79795622406}
+\item IP: \textit{17.173.254.223} con valor de información de \textbf{4.63289697778}
+\item IP: \textit{169.254.137.106} con valor de información de \textbf{3.41608558871}
 \end{itemize}
 
 Es importante destacar que el nodos con IP:\textit{172.17.8.1} tiene una información mucho menor al resto, por lo que probablemente se trate de un router.
