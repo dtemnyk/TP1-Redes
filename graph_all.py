@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import math
 import pydot
 import pickle
@@ -66,14 +68,30 @@ def compute_types_information_histogram():
     for packet_type in type_dictionary:
         probability = float(type_dictionary.get(packet_type)) / packet_count
         log_of_prob = math.log(probability, 2) * (-1)
-        hist[packet_type] = log_of_prob
+        if packet_type == '2048':
+            packet_name = 'IP'
+        elif packet_type == '2054':
+            packet_name = 'ARP'
+        elif packet_type == '34525':
+            packet_name = 'IPV6'
+        else:
+            packet_name = str(packet_type)
+        hist[packet_name] = log_of_prob
     return hist
 
 
 def compute_types_histogram():
     hist = collections.OrderedDict()
     for packet_type in type_dictionary:
-        hist[packet_type] = type_dictionary.get(packet_type)
+        if packet_type == '2048':
+            packet_name = 'IP'
+        elif packet_type == '2054':
+            packet_name = 'ARP'
+        elif packet_type == '34525':
+            packet_name = 'IPV6'
+        else:
+            packet_name = str(packet_type)
+        hist[packet_name] = type_dictionary.get(packet_type)
     return hist
 
 
@@ -103,9 +121,9 @@ def plot_histogram_types():
     plt.xlim([-2, x[-1] + 2])
     plt.bar(x, y, align='center')
     plt.xticks(x, labels, size='small', rotation='vertical', fontsize=18)
-    plt.title('Cant. Tipos:', fontsize=18)
-    plt.xlabel("Tipos", fontsize=15)
-    plt.ylabel("Cantidad", fontsize=18)
+    plt.title('Cantidad de Paquetes Versus Tipos de Paquete:', fontsize=18)
+    plt.xlabel("Tipos de Paquete", fontsize=15)
+    plt.ylabel("Cantidad de Paquetes", fontsize=18)
     filename = 'histogram_types.png'.format()
     f.savefig(filename)
 
@@ -118,12 +136,12 @@ def plot_histogram_types_information(entropy):
     f = plt.figure('hist_{source}'.format(source=source), [16, 9])
     f.subplots_adjust(bottom=0.2)
     plt.xlim([-2, x[-1] + 2])
-    plt.bar(x, y, align='center')
+    plt.bar(x, y, align='center', color='green')
     plt.xticks(x, labels, size='small', rotation='vertical', fontsize=18)
-    plt.title('Cant. Tipos:', fontsize=18)
-    plt.xlabel("Tipos", fontsize=15)
-    plt.ylabel("Informacion", fontsize=18)
-    plt.axhline(entropy, color='r', label='entropia')
+    plt.title('Informacion de Paquete Versus Tipos de Paquete:', fontsize=18)
+    plt.xlabel("Tipos de Paquete", fontsize=15)
+    plt.ylabel("Informacion de Paquete", fontsize=18)
+    plt.axhline(entropy, color='g', label='entropia')
     filename = 'histogram_types_information.png'.format()
     f.savefig(filename)
 
@@ -137,10 +155,10 @@ def plot_histogram_dst_information(entropy):
     f.subplots_adjust(bottom=0.2)
     plt.bar(x, y, align='center')
     plt.xticks(x, labels, size='small', rotation='vertical', fontsize=18)
-    plt.title('Cant. IPs Destino:', fontsize=18)
+    plt.title('Informacion de Paquete Versus IPs Destino:', fontsize=18)
     plt.xlabel("IPs Destino", fontsize=15)
-    plt.ylabel("Informacion", fontsize=18)
-    plt.axhline(entropy, color='r', label='entropia')
+    plt.ylabel("Informacion de Paquete", fontsize=18)
+    plt.axhline(entropy, color='g', label='entropia')
     filename = 'histogram_dst_information.png'.format()
     f.savefig(filename)
 
@@ -154,9 +172,9 @@ def plot_histogram_dst():
     f.subplots_adjust(bottom=0.2)
     plt.bar(x, y, align='center')
     plt.xticks(x, labels, size='small', rotation='vertical', fontsize=18)
-    plt.title('Cant. IPs Destino:', fontsize=18)
+    plt.title('Cantidad de Paquetes Versus IPs Destino:', fontsize=18)
     plt.xlabel("IPs Destino", fontsize=15)
-    plt.ylabel("Cantidad", fontsize=18)
+    plt.ylabel("Cantidad de Paquetes", fontsize=18)
     filename = 'histogram_dst.png'.format()
     f.savefig(filename)
 
@@ -175,7 +193,7 @@ def plot_network():
         node_to = pydot.Node(n_to, fontsize="20.0")
         graph.add_node(node_from)
         graph.add_node(node_to)
-        edge = pydot.Edge(n_from, n_to, label=label, color="blue", fontsize="18.0", len='3.0')
+        edge = pydot.Edge(n_from, n_to, label=label, color="red", fontsize="18.0", len='3.0')
         graph.add_edge(edge)
     filename = 'network.png'.format(basename='test')
     graph.write_png(filename, prog='neato')
