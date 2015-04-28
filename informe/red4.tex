@@ -1,40 +1,46 @@
 \subsection{Red Laboratorios DC}
 
-Para este experimento, capturamos los paquetes de la LAN Wi-Fi Laboratorios-DC del Departamento de Computació de la FCEyN de la UBA. La medición fue realizada un día Lunes desde las 15hs y durante 15 minutos. La cantidad de paquetes capturados es de 4000. De todos estos, sólo 164 corresponden al protocolo ARP.
+Para este experimento, capturamos los paquetes de la LAN Wi-Fi Laboratorios-DC del Departamento de Computació de la FCEyN de la UBA. La medición fue realizada un día Lunes desde las 15hs y durante 15 minutos. La cantidad de paquetes capturados es de 4000. De estos, 164 corresponden al protocolo ARP.
 
 \begin{figure}[H]
        \centering
        \includegraphics[width=1\textwidth]{../resultados/labo-corrida3/histogram_types.png}
        \caption{Protocolos de los paquetes capturados}
-       \label{red-hogarena-types}
+       \label{red-Starbucks-types}
 \end{figure}
 
 \begin{figure}[H]
        \centering
        \includegraphics[width=1\textwidth]{../resultados/labo-corrida3/histogram_types_information.png}
        \caption{Información de los protocolos de los paquetes capturados}
-       \label{red-hogarena-types-info}
+       \label{red-Starbucks-types-information}
 \end{figure}
 
+Como podemos observar también en este experimento, de acuerdo a nuestra definición de protocolo distinguido, el protocolo IPv4 sería el único distinguido en esta fuente. Es razonable, ya que la cantidad de paquetes IPv4 es mucho mayor que la cantidad de paquetes IPv6 y ARP. La información de los paquetes IPv4 es \textbf{0.0988917569855}, mientras que la entropía de la fuente es \textbf{0.440025436837}. Se observa como la información es claramente menor a la entropía.
 
 \begin{figure}[H]
        \centering
        \includegraphics[width=1\textwidth]{../resultados/labo-corrida3/histogram_dst.png}
        \caption{IPs destino de los paquetes ARP}
-       \label{red-hogarena-arp-destination}
+       \label{red-Starbucks-dst}
 \end{figure}
+
 
 \begin{figure}[H]
        \centering
        \includegraphics[width=1\textwidth]{../resultados/labo-corrida3/histogram_dst_information.png}
        \caption{Información de IPs destino de los paquetes ARP}
-       \label{red-hogarena-arp-destination-info}
+       \label{red-Starbucks-dst-information}
 \end{figure}
+
 
 \begin{figure}[H]
        \centering
        \includegraphics[width=1\textwidth]{../resultados/labo-corrida3/network.png}
        \caption{Tráfico de paquetes ARP}
-       \label{red-hogarena-arp-traffic}
+       \label{red-Starbucks-dst-information}
 \end{figure}
 
+Vemos como la IP \textbf{10.2.203.254} recibe una mayor cantidad de paquetes que casi todas las demás IPs, y además es un nodo distinguido por ser su información menor a la entropía. Apoyados en eso y viendo el gráfico de los nodos, podemos afirmar que es la IP del Router WiFi del lugar.
+
+Por otro lado, la IP \textbf{10.2.2.230} recibe una mayor cantida de paquetes y  también es un nodo distinguido.

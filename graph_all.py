@@ -162,7 +162,7 @@ def plot_histogram_dst():
 
 
 def plot_network():
-    graph = pydot.Dot(graph_type='digraph', size="7.75,10.25")
+    graph = pydot.Dot(graph_type='digraph', size="7.75,10.25", fontsize="15.0")
     for dist in dist_dictionary:
         n_from = str(dist.split('-')[0])
         n_to = str(dist.split('-')[1])
@@ -171,7 +171,11 @@ def plot_network():
         pieces = n_to.split('.')
         n_to = '.'.join(pieces[0:2]) + '\n' + '.'.join(pieces[2:4])
         label = str(dist_dictionary.get(dist))
-        edge = pydot.Edge(n_from, n_to, label=label, color="blue", fontsize="6.0", len='3.0')
+        node_from = pydot.Node(n_from, fontsize="20.0")
+        node_to = pydot.Node(n_to, fontsize="20.0")
+        graph.add_node(node_from)
+        graph.add_node(node_to)
+        edge = pydot.Edge(n_from, n_to, label=label, color="blue", fontsize="18.0", len='3.0')
         graph.add_edge(edge)
     filename = 'network.png'.format(basename='test')
     graph.write_png(filename, prog='neato')
