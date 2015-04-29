@@ -48,7 +48,7 @@ En este caso el valor de la entropía es de \textbf{5.22269613542}, y se pueden 
 
 Es importante destacar que el nodos con IP:\textit{172.17.8.1} tiene una información mucho menor al resto, por lo que probablemente se trate de un router.
 
-A continuación se muestra el tráfico de la red para poder reconocer con qué dispositivos se condicen los \textbf{nodos distinguidos}
+A continuación se muestra el tráfico de la red para poder reconocer con qué dispositivos se condicen los \textbf{nodos distinguidos}.
 
 \begin{figure}[H]
        \centering
@@ -57,8 +57,8 @@ A continuación se muestra el tráfico de la red para poder reconocer con qué d
        \label{red-hogarena-arp-traffic}
 \end{figure}
 
-En este caso se observa que el nodo con IP: \textit{172.17.98.1}, es destino de varios nodos, por lo confirma aun más nuestra hipotesis de que se trate de un router.
+En este caso se observa que el nodo con IP: \textit{172.17.98.1}, es destino de varios nodos, por lo que confirma aun más nuestra hipotesis de que se trate de un router.
 
-Por otro lado es inevitable observar que el nodo con IP: \textit{0.0.0.0} es fuente de una gran cantidad de paquetes. Hablaremos de esto en la sección \textit{Discusión}. 
+Por otro lado, es inevitable observar que el nodo con IP: \textit{0.0.0.0} es fuente de una gran cantidad de paquetes. Si bien hablaremos más de esto en la sección \textit{Discusión}, por el momento vamos a adelantar que esta dirección es utilizada inicialmente por dispositivos que se conectan a la red y buscan saber si una IP determinada se encuentra o no disponible para utilizarla. 
 
-En cuanto al resto de los nodos distinguidos todos los paquetes son recibidos de la dirección IP: \textit{0.0.0.0}, creemos que lo que puede estar sucediendo en este caso es que distintos dispositivos se conectaban a la red buscando utilizar estas IPs, una vez que se desconectaban de la red, aparecían nuevos dispositivos con la intención de utilizar esta red con dicha dirección IP, por lo que la cantidad de paquetes ARP enviados a las direcciones IP correspondientes a los nodos distinguidos resulta ser elevada.
+En cuanto al resto de los nodos distinguidos, muchos de los paquetes son recibidos desde la dirección IP: \textit{0.0.0.0}. Creemos que lo que puede estar sucediendo en este caso es que distintos dispositivos se conectaban a la red buscando utilizar estas IPs, y una vez que se desconectaban de la red, aparecían nuevos dispositivos con la intención de utilizar estas mismas direcciones IP. Por tal motivo, la cantidad de paquetes ARP enviados a las direcciones IP correspondientes a los nodos distinguidos resulta ser elevada.
