@@ -61,4 +61,4 @@ En este caso se observa que el nodo con IP: \textit{172.17.98.1}, es destino de 
 
 Por otro lado es inevitable observar que el nodo con IP: \textit{0.0.0.0} es fuente de una gran cantidad de paquetes. Hablaremos de esto en la sección \textit{Discusión}. 
 
-En cuanto al resto de los nodos distinguidos creemos que se tratan de usuarios conectados a internet con una mayor demanda de paquetes que el resto.
+En cuanto al resto de los nodos distinguidos todos los paquetes son recibidos de la dirección IP: \textit{0.0.0.0}, creemos que lo que puede estar sucediendo en este caso es que distintos dispositivos se conectaban a la red buscando utilizar estas IPs, una vez que se desconectaban de la red, aparecían nuevos dispositivos con la intención de utilizar esta red con dicha dirección IP, por lo que la cantidad de paquetes ARP enviados a las direcciones IP correspondientes a los nodos distinguidos resulta ser elevada.
