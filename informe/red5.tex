@@ -32,7 +32,6 @@ Como podemos también en este experimento, el protocolo IPv4 sería el único di
        \label{red-Starbucks-dst-information}
 \end{figure}
 
-
 \begin{figure}[H]
        \centering
        \includegraphics[width=1\textwidth]{../resultados/subte/network.png}
@@ -40,4 +39,4 @@ Como podemos también en este experimento, el protocolo IPv4 sería el único di
        \label{red-Starbucks-dst-information}
 \end{figure}
 
-Analizando los gráficos podemos ver que las IPs \textbf{10.92.8.121} y \textbf{10.92.5.49} reciben una mayor cantidad de paquetes que las demás y son nodos distinguidos por ser su información menor a la entropía. Pero los paquetes que reciben parecen provenir de un servidor DHCP. No podemos sacar más conclusiones de estos gráficos debido al corto tiempo de intercepción de paquetes.\\
+Analizando los gráficos podemos ver que las IPs \textbf{10.92.8.121} y \textbf{10.92.5.49} reciben una mayor cantidad de paquetes que las demás y son nodos distinguidos por ser su información menor a la entropía. Pero los paquetes que reciben tienen como origen a la IP \textbf{0.0.0.0}, que como discutimos en la siguiente sección, son ARP requests que se mandan debido a la ejecución de un protocolo DHCP. No podemos sacar más conclusiones de estos gráficos debido al corto tiempo de intercepción de paquetes.\\
